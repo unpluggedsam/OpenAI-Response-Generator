@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenAI Response Generator</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">OpenAI Response Generator</h1>
+
+        <div class="form-container">
+            <div class="form-group">
+                <label for="prompt">Prompt:</label>
+                <textarea id="prompt" class="input-box" placeholder="Enter a prompt"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="parameter">Parameter:</label>
+                <textarea id="parameter" class="input-box" placeholder="Enter a parameter"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="max-tokens" class="tooltip">
+                    Max Tokens
+                    <span class="tooltip-text">The maximum number of tokens in the generated response.</span>
+                </label>
+                <div class="max-tokens">
+                    <div class="max-tokens-input-container">
+                        <input type="range" id="max-tokens" class="max-tokens-input" value="1" min="1" max="4096">
+                    </div>
+                    <span id="max-tokens-value">1</span>
+                </div>
+            </div>
+            <button onclick="generatePrompt()" class="submit-button">Generate</button>
+            <button onclick="stopGeneration()" class="submit-button">Stop</button>
+        </div>
+
+        <div class="response-container">
+            <h2 class="response-title">Response:</h2>
+            <div id="response" class="response"></div>
+            <div class="loader" id="loader">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
