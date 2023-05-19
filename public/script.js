@@ -9,7 +9,7 @@ function updateMaxTokens() {
 
 function generatePrompt() {
     document.getElementById("loader").style.display = "inline-block"; // Show loader
-    const apiKey = "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";
+    const apiKey = "KEY";
     const promptInput = document.getElementById("prompt");
     const jsonParameterInput = document.getElementById("json-parameter");
     const responseElement = document.getElementById("response");
