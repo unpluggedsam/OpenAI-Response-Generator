@@ -8,13 +8,16 @@ function updateMaxTokens() {
 }
 
 function generatePrompt() {
-    const apiKey = "YOUR_API_KEY";
+    const apiKey = "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";
     const promptInput = document.getElementById("prompt");
-    const parameterInput = document.getElementById("parameter");
+    const jsonParameterInput = document.getElementById("json-parameter");
     const responseElement = document.getElementById("response");
+    const loaderElement = document.getElementById("loader");
 
     const prompt = promptInput.value;
-    const parameter = parameterInput.value;
+    const jsonParameter = jsonParameterInput.value;
+
+    const completePrompt = jsonParameter + " " + prompt;
 
     const requestOptions = {
         method: "POST",
@@ -24,13 +27,13 @@ function generatePrompt() {
         },
         body: JSON.stringify({
             model: "text-davinci-003",
-            prompt: prompt,
+            prompt: completePrompt,
             max_tokens: maxTokens
         })
     };
 
     responseElement.innerText = ""; // Clear previous response
-    document.getElementById("loader").style.display = "block"; // Show loader
+    loaderElement.style.display = "block"; // Show loader
 
     stopGenerationFlag = false;
 
@@ -42,40 +45,42 @@ function generatePrompt() {
             return response.json();
         })
         .then(data => {
-            const text = data.choices[0].text.trim();
-            typeOutResponse(text, responseElement);
+            const generatedResponse = data.choices[0].text.trim();
+            typeOutResponse(generatedResponse, responseElement);
         })
         .catch(error => {
             responseElement.innerText = "Error: " + error;
+        })
+        .finally(() => {
+            loaderElement.style.display = "none"; // Hide loader
         });
 }
 
 function typeOutResponse(text, element) {
     const charsPerSecond = 30; // Adjust the typing speed (characters per second)
     const delay = 1000 / charsPerSecond;
-  
+
     const words = text.split(" "); // Split the text into an array of words
     let currentIndex = 0;
-  
+
     const intervalId = setInterval(() => {
-      if (stopGenerationFlag) {
-        clearInterval(intervalId);
-        document.getElementById("loader").style.display = "none"; // Hide loader
-        return;
-      }
-  
-      element.innerText += words[currentIndex] + " "; // Add the current word to the element
-  
-      currentIndex++;
-  
-      if (currentIndex >= words.length) {
-        clearInterval(intervalId);
-        element.style.height = "auto"; // Expand the response container
-        document.getElementById("loader").style.display = "none"; // Hide loader
-      }
+        if (stopGenerationFlag) {
+            clearInterval(intervalId);
+            document.getElementById("loader").style.display = "none"; // Hide loader
+            return;
+        }
+
+        element.innerText += words[currentIndex] + " "; // Add the current word to the element
+
+        currentIndex++;
+
+        if (currentIndex >= words.length) {
+            clearInterval(intervalId);
+            element.style.height = "auto"; // Expand the response container
+            document.getElementById("loader").style.display = "none"; // Hide loader
+        }
     }, delay);
-  }
-  
+}
 
 function stopGeneration() {
     stopGenerationFlag = true;
@@ -87,10 +92,3 @@ maxTokensInput.addEventListener("input", updateMaxTokens);
 
 // Set initial maxTokens value
 updateMaxTokens();
-
-// Start the server
-const port = process.env.PORT || 3000; // Use the provided port or default to 3000
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
-

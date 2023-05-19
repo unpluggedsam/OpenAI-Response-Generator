@@ -1,3 +1,5 @@
+/* Add your CSS styles here */
+
 body {
     margin: 0;
     padding: 0;
@@ -157,12 +159,22 @@ body {
     align-items: center;
 }
 
+.loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: #4CAF50;
+}
+
 .tooltip {
     position: relative;
     cursor: pointer;
-  }
-  
-  .tooltip-text {
+}
+
+.tooltip-text {
     visibility: hidden;
     width: 200px;
     background-color: #3366cc;
@@ -172,15 +184,13 @@ body {
     padding: 8px;
     position: absolute;
     z-index: 1;
-    top: 50%;
-    right: calc(100% + 10px);
-    transform: translateY(-50%);
+    top: -10px;
+    left: calc(100% + 10px);
     opacity: 0;
     transition: opacity 0.3s;
-  }
-  
-  .tooltip:hover .tooltip-text {
+}
+
+.tooltip:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
-  }
-  
+}

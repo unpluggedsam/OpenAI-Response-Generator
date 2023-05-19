@@ -1,0 +1,19 @@
+{
+  "name": "openai-response-generator",
+  "version": "1.0.0",
+  "description": "Simple webpage that allows you to query OpenAI's API with prompts and receive responses",
+  "main": "script.js",
+  "scripts": {
+    "test": "npm run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unpluggedsam/OpenAI-Response-Generator.git"
+  },
+  "author": "Sam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unpluggedsam/OpenAI-Response-Generator/issues"
+  },
+  "homepage": "https://github.com/unpluggedsam/OpenAI-Response-Generator#readme"
+}
