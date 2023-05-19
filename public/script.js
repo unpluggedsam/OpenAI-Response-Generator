@@ -8,6 +8,7 @@ function updateMaxTokens() {
 }
 
 function generatePrompt() {
+    document.getElementById("loader").style.display = "inline-block"; // Show loader
     const apiKey = "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";
     const promptInput = document.getElementById("prompt");
     const jsonParameterInput = document.getElementById("json-parameter");
@@ -57,6 +58,7 @@ function generatePrompt() {
 }
 
 function typeOutResponse(text, element) {
+    document.getElementById("loader").style.display = "none"; // Hide loader
     const charsPerSecond = 30; // Adjust the typing speed (characters per second)
     const delay = 1000 / charsPerSecond;
 
@@ -84,6 +86,7 @@ function typeOutResponse(text, element) {
 
 function stopGeneration() {
     stopGenerationFlag = true;
+    document.getElementById("loader").style.display = "none"; // Hide loader
 }
 
 // Update maxTokens value when the input changes
