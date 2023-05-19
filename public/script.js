@@ -29,7 +29,8 @@ function generatePrompt() {
         body: JSON.stringify({
             model: "text-davinci-003",
             prompt: completePrompt,
-            max_tokens: maxTokens
+            max_tokens: maxTokens,
+            temperature: 0.2 // Adjust the temperature value as desired
         })
     };
 
